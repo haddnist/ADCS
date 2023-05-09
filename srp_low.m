@@ -1,12 +1,13 @@
 %This is the low fidelity model for the Solar Radiation pressure
 %Here we are assuming sun facing area as constant(independent of attitude)
 %for shadow region we are assuming earth as spherical
-%Work to be done -  function for T_jul based on IST or GMT
+%Work to be done -  add SRP variation based on attitude
+%                   function for T_jul based on IST or GMT
 %                   
 %Inputs: 
 %           r_ES = distance of earth from the sun 
 %           T_jul = The julian date
-%           u_EC = unit vector from the earthCs center to Cube-sat 
+%           u_EC = unit vector from the earth's center to Cube-sat 
 %           r_EC = distance of cubesat from earth
 %           m = mass of cubesat
 function a = srp_low(r_ES,T_jul,u_EC,r_EC,m)
