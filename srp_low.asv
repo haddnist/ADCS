@@ -2,7 +2,7 @@
 %Here we are assuming sun facing area as constant(independent of attitude)
 %for shadow region we are assuming earth as spherical
 %Work to be done -  function for T_jul based on IST or GMT
-%                   
+%                   remove above assumptions
 %Inputs: 
 %           r_ES = distance of earth from the sun 
 %           T_jul = The julian date
@@ -55,12 +55,7 @@ P = sc/(c*(norm(R_CS)^2));
 
 %calculating the acceleration
 F = -(P*c_SRP*u_CS)*area;
-
-if(sh~=-1)
-    a = F/m;
-else
-    a=0;
-end
+a = F/m;
 end
 
 function roots = quadsolve(a,b,c)
