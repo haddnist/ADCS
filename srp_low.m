@@ -4,7 +4,7 @@
 %Work to be done -  add SRP variation based on attitude
 %                   function for T_jul based on IST or GMT
 %                   
-%Inputs: 
+%Inputs
 %           r_ES = distance of earth from the sun 
 %           T_jul = The julian date
 %           u_EC = unit vector from the earth's center to Cube-sat 
