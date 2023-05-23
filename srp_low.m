@@ -18,7 +18,7 @@ area = 3 * 0.01;
 r_E =  6.3781366 * 10^6; %radius of earth
 r_S = 6.957 *10^8; %radius of sun
 pi = 3.141592653; 
-au = 149597870691; %astromical unit in metres
+au = 149597870691; %astromical unit in metre
 
 %calculating the unit vector in the Earth-to-Sun direcion and distance
 %between earth and sun
