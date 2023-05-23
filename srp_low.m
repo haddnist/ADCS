@@ -18,7 +18,7 @@ area = 3 * 0.01;
 r_E =  6.3781366 * 10^6; %radius of earth
 r_S = 6.957 *10^8; %radius of sun
 pi = 3.141592653; 
-
+au = 149597870691; %astromical unit in metres
 
 %calculating the unit vector in the Earth-to-Sun direcion and distance
 %between earth and sun
@@ -37,7 +37,7 @@ cen = (1.914602 - (0.004817 * T) - (0.000014 * T *T))*sin(M) + (0.01993 - 0.0001
 neu = cen + M;
 %eccentricity of earth orbit
 ex = 0.016708634 - 0.000042037*T - 0.0000001267*T*T;
-r_ES = (1.000001018 *(1- (ex)^2))/(1+ex*cos(neu)); %distance of earth from the sun
+r_ES = ((1.000001018 *(1- (ex)^2))/(1+ex*cos(neu)))*au; %distance of earth from the sun
 
 %calculating shadow region
 umbra = (r_E/(r_S-r_E))*r_ES;
