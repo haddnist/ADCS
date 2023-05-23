@@ -2,15 +2,14 @@
 %Here we are assuming sun facing area as constant(independent of attitude)
 %for shadow region we are assuming earth as spherical
 %Work to be done -  add SRP variation based on attitude
-%                   function for T_jul based on IST or GMT
+%                   
 %                   
 %Inputs
-%           r_ES = distance of earth from the sun 
-%           T_jul = The julian date
+%           s = time in seconds after mission has started(on Jan 1,2024)
 %           u_EC = unit vector from the earth's center to Cube-sat 
 %           r_EC = distance of cubesat from earth
 %           m = mass of cubesat
-function a = srp_low(r_ES,T_jul,u_EC,r_EC,m)
+function a = srp_low(s,u_EC,r_EC,m)
 %defining some constants
 sc=1362; %solar constant
 c = 299792458; %speed of light
@@ -20,13 +19,25 @@ r_E =  6.3781366 * 10^6; %radius of earth
 r_S = 6.957 *10^8; %radius of sun
 pi = 3.141592653; 
 
-%calculating the unit vector in the Earth-to-Sun direcion
+
+%calculating the unit vector in the Earth-to-Sun direcion and distance
+%between earth and sun
+T_jul = JD(s);
 T = (T_jul-2451545)/36525;
 phi =  280.460 + 36000.771*T; %mean longitude of the sun
 M = 357.5277233 + 35999.05034*T; %mean anomaly of the sun
 phi_ec = phi + (1.914666471 * sin(M)) + (0.019994643 * sin(2*M)); %Longitude of the ecliptic
 e =23.439291 - (0.0130042 * T); %Obliquity of the ecliptic
 u_ES = [cos(phi_ec),(cos(e)*sin(phi_ec)),(sin(e)*sin(phi_ec))];
+%for distance, reference Jean Meeus - Astronomical Algorithm pg 164
+%centre of Sun
+cen = (1.914602 - (0.004817 * T) - (0.000014 * T *T))*sin(M) + (0.01993 - 0.000101*T)*sin(2*M) + 0.000289 * sin(3*M);
+
+%true anomaly is
+neu = cen + M;
+%eccentricity of earth orbit
+ex = 0.016708634 - 0.000042037*T - 0.0000001267*T*T;
+r_ES = (1.000001018 *(1- (ex)^2))/(1+ex*cos(neu)); %distance of earth from the sun
 
 %calculating shadow region
 umbra = (r_E/(r_S-r_E))*r_ES;
