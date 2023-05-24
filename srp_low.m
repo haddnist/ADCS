@@ -40,6 +40,7 @@ ex = 0.016708634 - 0.000042037*T - 0.0000001267*T*T;
 r_ES = ((1.000001018 *(1- (ex)^2))/(1+ex*cos(neu)))*au; %distance of earth from the sun
 
 %calculating shadow region
+sh = 0;
 umbra = (r_E/(r_S-r_E))*r_ES;
 theta = asin(r_E/umbra); %half angle of the shadow cone
 t = quadsolve(((umbra/r_EC)+1),(2/tan(theta)),((umbra/r_EC)-1));
